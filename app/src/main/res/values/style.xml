@@ -1,0 +1,22 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/BackgroundDefaultLight</item>
+        <item name="colorPrimary">@color/BackgroundDefaultLight</item>
+        <item name="colorAccent">@color/AccentLight</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/BackgroundDefaultLight</item>
+    </style>
+
+    <style name="OctetEditTextTheme">
+        <item name="colorControlNormal">@android:color/transparent</item>
+        <item name="colorControlActivated">@color/TextPrimaryLight</item>
+        <item name="colorControlHighlight">@color/TextPrimaryLight</item>
+        <item name="android:fontFamily">@font/noto_regular</item>
+        <item name="android:minWidth">90dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:maxLength">4</item>
+        <item name="android:inputType">numberDecimal</item>
+    </style>
+</resources>
