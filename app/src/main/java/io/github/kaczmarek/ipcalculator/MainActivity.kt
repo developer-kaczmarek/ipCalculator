@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             editText.addTextChangedListener { view ->
                 view?.let {
                     when {
-                        it.toString().endsWith(getString(R.string.dot)) -> {
+                        it.toString().endsWith(getString(R.string.common_dot)) -> {
                             it.delete(it.length - 1, it.length)
                             moveCursorToNextOctet(index)
                         }

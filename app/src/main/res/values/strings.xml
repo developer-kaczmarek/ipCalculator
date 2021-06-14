@@ -1,19 +1,21 @@
 <resources>
-    <string name="app_name">IP Calculator</string>
+    <string name="app_name">IP Калькулятор</string>
 
-    <string name="slash_mask">/%1$d</string>
+    <string name="common_slash_formatted">/%1$d</string>
+    <string name="common_slash" translatable="false">/</string>
+    <string name="common_dot" translatable="false">.</string>
+    <string name="common_not_hosts">В заданной сети нет адресов для рабочих хостов</string>
 
-    <string name="dot">.</string>
-    <string name="slash">/</string>
-
-    <string name="label_network">IP адрес сети:</string>
-    <string name="label_subnet_mask">Маска подсети:</string>
-    <string name="label_hosts_range">Hosts Range:</string>
-    <string name="label_ip_first_host">IP адрес первого хоста:</string>
-    <string name="label_ip_last_host">IP адрес последнего хоста:</string>
-    <string name="label_Broadcast">Широковещательный адрес:</string>
-    <string name="label_netSize">Количество рабочих адресов:</string>
-    <string name="label_subnet_wildcard_mask">Обратная маска подсети:</string>
+    <string name="main_activity_ip_address">IP адрес:</string>
+    <string name="main_activity_cidr_prefix">Префикс маски подсети:</string>
+    <string name="main_activity_subnet_mask">Маска подсети:</string>
+    <string name="main_activity_wildcard_mask">Обратная маска подсети (wildcard mask):</string>
+    <string name="main_activity_network_ip_address">IP адрес сети:</string>
+    <string name="main_activity_broadcast_ip_address">Широковещательный адрес:</string>
+    <string name="main_activity_max_possible_hosts">Количество доступных адресов в порции хоста:</string>
+    <string name="main_activity_usable_hosts">Количество рабочих адресов для хостов:</string>
+    <string name="main_activity_first_host">IP адрес первого хоста:</string>
+    <string name="main_activity_last_host">IP адрес последнего хоста:</string>
 
     <string-array name="subnet_masks">
         <item>/0 (0.0.0.0)</item>

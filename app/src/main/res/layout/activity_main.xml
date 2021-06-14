@@ -25,11 +25,11 @@
                 android:id="@+id/tv_main_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_bold"
-                android:text="IP адрес"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:fontFamily="@font/noto_bold"
+                android:text="IP адрес"
                 android:textColor="@color/TextPrimaryLight"
                 android:textSize="18sp" />
 
@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_regular"
-                    android:text="@string/dot"
+                    android:text="@string/common_dot"
                     android:textColor="@color/TextPrimaryLight"
                     android:textSize="18sp" />
 
@@ -72,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_regular"
-                    android:text="@string/dot"
+                    android:text="@string/common_dot"
                     android:textColor="@color/TextPrimaryLight"
                     android:textSize="18sp" />
 
@@ -90,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_regular"
-                    android:text="@string/dot"
+                    android:text="@string/common_dot"
                     android:textColor="@color/TextPrimaryLight"
                     android:textSize="18sp" />
 
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/noto_regular"
-                    android:text="@string/slash"
+                    android:text="@string/common_slash"
                     android:textColor="@color/TextPrimaryLight"
                     android:textSize="18sp" />
 
@@ -148,82 +148,123 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
-                android:id="@+id/labelNetworkTextView"
+                style="@style/IpInfoTitleTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_network" />
+                android:text="@string/main_activity_ip_address"/>
 
             <TextView
                 android:id="@+id/resNetworkTextView"
+                style="@style/IpInfoValueTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/labelMaskTextView"
+                style="@style/IpInfoTitleTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_subnet_mask" />
+                android:text="@string/main_activity_cidr_prefix" />
 
             <TextView
                 android:id="@+id/resMaskTextView"
+                style="@style/IpInfoValueTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/labelWildcardMaskTextView"
+                style="@style/IpInfoTitleTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_subnet_wildcard_mask" />
+                android:text="@string/main_activity_subnet_mask" />
 
             <TextView
                 android:id="@+id/resWildcardMaskTextView"
+                style="@style/IpInfoValueTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/labelFirstHostTextView"
+                style="@style/IpInfoTitleTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_ip_first_host" />
+                android:text="@string/main_activity_wildcard_mask" />
 
             <TextView
                 android:id="@+id/resFirstHostTextView"
+                style="@style/IpInfoValueTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/labelLastHostTextView"
+                style="@style/IpInfoTitleTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_ip_last_host" />
+                android:text="@string/main_activity_network_ip_address" />
 
             <TextView
                 android:id="@+id/resLastHostTextView"
+                style="@style/IpInfoValueTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/labelBroadcastTextView"
+                style="@style/IpInfoTitleTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_Broadcast" />
+                android:text="@string/main_activity_broadcast_ip_address" />
 
             <TextView
                 android:id="@+id/resBroadcastTextView"
+                style="@style/IpInfoValueTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/labelNetSizeTextView"
+                style="@style/IpInfoTitleTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/label_netSize" />
+                android:text="@string/main_activity_max_possible_hosts" />
 
             <TextView
                 android:id="@+id/resNetSizeTextView"
+                style="@style/IpInfoValueTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/IpInfoTitleTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/main_activity_usable_hosts" />
+
+            <TextView
+                style="@style/IpInfoValueTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/IpInfoTitleTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/main_activity_first_host" />
+
+            <TextView
+                style="@style/IpInfoValueTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/IpInfoTitleTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/main_activity_last_host" />
+
+            <TextView
+                style="@style/IpInfoValueTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
