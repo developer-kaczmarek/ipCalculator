@@ -21,6 +21,8 @@
     <string name="main_activity_last_host">IP адрес последнего хоста:</string>
     <string name="main_activity_calculate_description">Вычислить</string>
 
+    <string name="component_empty_placeholder_description">Пока мы не получили данные, введи IP адрес, маску и тапни \"Вычислить\"</string>
+
     <string-array name="subnet_masks">
         <item>/0 (0.0.0.0)</item>
         <item>/1 (128.0.0.0)</item>

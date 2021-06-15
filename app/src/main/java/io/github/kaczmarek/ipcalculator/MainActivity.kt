@@ -3,9 +3,15 @@ package io.github.kaczmarek.ipcalculator
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
+import androidx.core.widget.NestedScrollView
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
@@ -24,6 +30,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvCountUsableHostsValue: MaterialTextView
     private lateinit var tvFirstHostIpAddressValue: MaterialTextView
     private lateinit var tvLastHostIpAddressValue: MaterialTextView
+    private lateinit var clContainer: ConstraintLayout
+    private lateinit var tvIpAddressTitle: MaterialTextView
+    private lateinit var nsvIpInfoContainer: NestedScrollView
+    private lateinit var clEmptyPlaceholder: ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +52,9 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.et_main_third_octet),
             findViewById(R.id.et_main_fourth_octet)
         )
+        clContainer = findViewById(R.id.cl_main_container)
+        nsvIpInfoContainer = findViewById(R.id.nsv_main_ip_info_container)
+        tvIpAddressTitle = findViewById(R.id.tv_main_ip_address_title)
         tvIpAddressValue = findViewById(R.id.tv_main_ip_address)
         tvCidrPrefixValue = findViewById(R.id.tv_main_cidr_prefix)
         tvSubnetMaskValue = findViewById(R.id.tv_main_subnet_mask)
@@ -52,7 +65,19 @@ class MainActivity : AppCompatActivity() {
         tvCountUsableHostsValue = findViewById(R.id.tv_main_count_usable_hosts)
         tvFirstHostIpAddressValue = findViewById(R.id.tv_main_first_host)
         tvLastHostIpAddressValue = findViewById(R.id.tv_main_last_host)
+        clEmptyPlaceholder = findViewById(R.id.cl_empty_placeholder_container)
+
+        nsvIpInfoContainer.visibility = View.GONE
+
         setListenerEditableViews()
+
+        ViewCompat.setOnApplyWindowInsetsListener(clContainer) { _, insets ->
+            val sysBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            clContainer.updatePadding(0, 0, 0, sysBarsInsets.bottom)
+            tvIpAddressTitle.updatePadding(0, sysBarsInsets.top, 0, 0)
+            insets
+        }
+
         val btnCalculate = findViewById<MaterialButton>(R.id.btn_main_calculate)
         btnCalculate.setOnClickListener {
             calculate()
@@ -148,7 +173,11 @@ class MainActivity : AppCompatActivity() {
             tvCountUsableHostsValue.text = ipManager.getCountUsableHosts().toString()
             tvFirstHostIpAddressValue.text = ipManager.getFirstUsableHost()
             tvLastHostIpAddressValue.text = ipManager.getLastUsableHost()
+            nsvIpInfoContainer.visibility = View.VISIBLE
+            clEmptyPlaceholder.visibility = View.GONE
         } catch (e: Exception) {
+            nsvIpInfoContainer.visibility = View.GONE
+            clEmptyPlaceholder.visibility = View.VISIBLE
             Log.e(TAG, "e = ${e.message}")
         }
     }
