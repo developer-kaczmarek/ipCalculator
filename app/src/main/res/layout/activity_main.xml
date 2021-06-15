@@ -9,7 +9,7 @@
         android:id="@+id/cv_main_control_panel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +29,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/noto_bold"
-                android:text="IP адрес"
+                android:text="@string/main_activity_ip_address"
                 android:textColor="@color/TextPrimaryLight"
                 android:textSize="18sp" />
 
@@ -40,17 +40,17 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="8dp">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_main_first_octet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:hint="192"
+                    android:hint="@string/common_first_octet_hint"
                     android:imeOptions="actionNext"
                     android:theme="@style/OctetEditTextTheme" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_regular"
@@ -58,17 +58,17 @@
                     android:textColor="@color/TextPrimaryLight"
                     android:textSize="18sp" />
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_main_second_octet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:hint="168"
+                    android:hint="@string/common_second_octet_hint"
                     android:imeOptions="actionNext"
                     android:theme="@style/OctetEditTextTheme" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_regular"
@@ -76,17 +76,17 @@
                     android:textColor="@color/TextPrimaryLight"
                     android:textSize="18sp" />
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_main_third_octet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:hint="0"
+                    android:hint="@string/common_third_and_fourth_octets_hint"
                     android:imeOptions="actionNext"
                     android:theme="@style/OctetEditTextTheme" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_regular"
@@ -94,17 +94,17 @@
                     android:textColor="@color/TextPrimaryLight"
                     android:textSize="18sp" />
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_main_fourth_octet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:hint="0"
+                    android:hint="@string/common_third_and_fourth_octets_hint"
                     android:imeOptions="actionDone"
                     android:theme="@style/OctetEditTextTheme" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -131,8 +131,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:backgroundTint="#3F51B5"
-                android:text="Вычислить" />
+                android:backgroundTint="@color/ButtonBackgroundLight"
+                android:text="@string/main_activity_calculate_description"
+                android:textColor="@color/ButtonTextLight" />
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
@@ -151,119 +152,122 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 style="@style/IpInfoTitleTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/main_activity_ip_address"/>
+                android:text="@string/main_activity_ip_address" />
 
-            <TextView
-                android:id="@+id/resNetworkTextView"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_main_ip_address"
                 style="@style/IpInfoValueTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 style="@style/IpInfoTitleTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/main_activity_cidr_prefix" />
 
-            <TextView
-                android:id="@+id/resMaskTextView"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_main_cidr_prefix"
                 style="@style/IpInfoValueTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 style="@style/IpInfoTitleTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/main_activity_subnet_mask" />
 
-            <TextView
-                android:id="@+id/resWildcardMaskTextView"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_main_subnet_mask"
                 style="@style/IpInfoValueTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 style="@style/IpInfoTitleTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/main_activity_wildcard_mask" />
 
-            <TextView
-                android:id="@+id/resFirstHostTextView"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_main_wildcard_mask"
                 style="@style/IpInfoValueTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 style="@style/IpInfoTitleTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/main_activity_network_ip_address" />
 
-            <TextView
-                android:id="@+id/resLastHostTextView"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_main_network_ip_address"
                 style="@style/IpInfoValueTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 style="@style/IpInfoTitleTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/main_activity_broadcast_ip_address" />
 
-            <TextView
-                android:id="@+id/resBroadcastTextView"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_main_broadcast_ip_address"
                 style="@style/IpInfoValueTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 style="@style/IpInfoTitleTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/main_activity_max_possible_hosts" />
 
-            <TextView
-                android:id="@+id/resNetSizeTextView"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_main_count_possible_hosts"
                 style="@style/IpInfoValueTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 style="@style/IpInfoTitleTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/main_activity_usable_hosts" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_main_count_usable_hosts"
                 style="@style/IpInfoValueTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 style="@style/IpInfoTitleTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/main_activity_first_host" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_main_first_host"
                 style="@style/IpInfoValueTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 style="@style/IpInfoTitleTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/main_activity_last_host" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_main_last_host"
                 style="@style/IpInfoValueTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

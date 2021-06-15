@@ -8,17 +8,22 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textview.MaterialTextView
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var etArrayIpAddress: Array<EditText>
+    private lateinit var etArrayIpAddress: Array<TextInputEditText>
     private lateinit var snrCIDRPrefix: Spinner
-    private lateinit var resNetworkTextView: TextView
-    private lateinit var resMaskTextView: TextView
-    private lateinit var resWildcardMaskTextView: TextView
-    private lateinit var resFirstHostTextView: TextView
-    private lateinit var resLastHostTextView: TextView
-    private lateinit var resBroadcastTextView: TextView
-    private lateinit var resNetSizeTextView: TextView
+    private lateinit var tvIpAddressValue: MaterialTextView
+    private lateinit var tvCidrPrefixValue: MaterialTextView
+    private lateinit var tvSubnetMaskValue: MaterialTextView
+    private lateinit var tvWildcardMaskValue: MaterialTextView
+    private lateinit var tvNetworkIpAddressValue: MaterialTextView
+    private lateinit var tvBroadcastIpAddressValue: MaterialTextView
+    private lateinit var tvCountPossibleHostsValue: MaterialTextView
+    private lateinit var tvCountUsableHostsValue: MaterialTextView
+    private lateinit var tvFirstHostIpAddressValue: MaterialTextView
+    private lateinit var tvLastHostIpAddressValue: MaterialTextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +42,16 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.et_main_third_octet),
             findViewById(R.id.et_main_fourth_octet)
         )
-        resNetworkTextView = findViewById(R.id.resNetworkTextView)
-        resMaskTextView = findViewById(R.id.resMaskTextView)
-        resWildcardMaskTextView = findViewById(R.id.resWildcardMaskTextView)
-        resFirstHostTextView = findViewById(R.id.resFirstHostTextView)
-        resLastHostTextView = findViewById(R.id.resLastHostTextView)
-        resBroadcastTextView = findViewById(R.id.resBroadcastTextView)
-        resNetSizeTextView = findViewById(R.id.resNetSizeTextView)
+        tvIpAddressValue = findViewById(R.id.tv_main_ip_address)
+        tvCidrPrefixValue = findViewById(R.id.tv_main_cidr_prefix)
+        tvSubnetMaskValue = findViewById(R.id.tv_main_subnet_mask)
+        tvWildcardMaskValue = findViewById(R.id.tv_main_wildcard_mask)
+        tvNetworkIpAddressValue = findViewById(R.id.tv_main_network_ip_address)
+        tvBroadcastIpAddressValue = findViewById(R.id.tv_main_broadcast_ip_address)
+        tvCountPossibleHostsValue = findViewById(R.id.tv_main_count_possible_hosts)
+        tvCountUsableHostsValue = findViewById(R.id.tv_main_count_usable_hosts)
+        tvFirstHostIpAddressValue = findViewById(R.id.tv_main_first_host)
+        tvLastHostIpAddressValue = findViewById(R.id.tv_main_last_host)
         setListenerEditableViews()
         val btnCalculate = findViewById<MaterialButton>(R.id.btn_main_calculate)
         btnCalculate.setOnClickListener {
@@ -53,34 +61,36 @@ class MainActivity : AppCompatActivity() {
 
     private fun setListenerEditableViews() {
         etArrayIpAddress.forEachIndexed { index, editText ->
-            editText.addTextChangedListener { view ->
-                view?.let {
-                    when {
-                        it.toString().endsWith(getString(R.string.common_dot)) -> {
-                            it.delete(it.length - 1, it.length)
-                            moveCursorToNextOctet(index)
-                        }
-                        it.length == 3 -> moveCursorToNextOctet(index)
-                        it.length > 3 -> {
-                            val lastChar = it.toString()[it.length - 1]
-                            it.delete(it.length - 1, it.length)
-                            moveCursorToNextOctetAndSetChar(index, lastChar)
+            with(editText) {
+                addTextChangedListener { view ->
+                    view?.let {
+                        when {
+                            it.toString().endsWith(getString(R.string.common_dot)) -> {
+                                it.delete(it.length - 1, it.length)
+                                moveCursorToNextOctet(index)
+                            }
+                            it.length == 3 -> moveCursorToNextOctet(index)
+                            it.length > 3 -> {
+                                val lastChar = it.toString()[it.length - 1]
+                                it.delete(it.length - 1, it.length)
+                                moveCursorToNextOctetAndSetChar(index, lastChar)
+                            }
                         }
                     }
                 }
-            }
-            editText.setOnEditorActionListener { v, actionId, _ ->
-                when (actionId) {
-                    EditorInfo.IME_ACTION_NEXT -> moveCursorToNextOctet(index)
-                    EditorInfo.IME_ACTION_DONE -> v.clearFocus()
+                setOnEditorActionListener { v, actionId, _ ->
+                    when (actionId) {
+                        EditorInfo.IME_ACTION_NEXT -> moveCursorToNextOctet(index)
+                        EditorInfo.IME_ACTION_DONE -> v.clearFocus()
+                    }
+                    false
                 }
-                false
-            }
-            editText.setOnKeyListener { _, keyCode, _ ->
-                if (keyCode == KeyEvent.KEYCODE_DEL && editText.text.isEmpty()) {
-                    moveCursorToForwardOctet(index)
+                setOnKeyListener { _, keyCode, _ ->
+                    if (keyCode == KeyEvent.KEYCODE_DEL && editText.text.isNullOrEmpty()) {
+                        moveCursorToForwardOctet(index)
+                    }
+                    false
                 }
-                false
             }
         }
     }
@@ -102,7 +112,8 @@ class MainActivity : AppCompatActivity() {
             val nextOctet = etArrayIpAddress[nextIndex]
             with(nextOctet) {
                 setText(char.toString())
-                setSelection(text.length, text.length)
+                val position = text?.length ?: 0
+                setSelection(position, position)
                 requestFocus()
             }
         }
@@ -127,25 +138,16 @@ class MainActivity : AppCompatActivity() {
             }
             val prefix = snrCIDRPrefix.selectedItemPosition
             val ipManager = IpManager(octets, prefix)
-            resNetworkTextView.text = octets.toString()
-            resMaskTextView.text = ipManager.getSubnetMask()
-            resWildcardMaskTextView.text = ipManager.getWildcardMask()
-            resFirstHostTextView.text = ipManager.getFirstUsableHost()
-            resLastHostTextView.text = ipManager.getLastUsableHost()
-            resBroadcastTextView.text = ipManager.getBroadcastIpAddress()
-            resNetSizeTextView.text = ipManager.getCountUsableHosts().toString()
-            Log.i(TAG, "Префикс маски подсети: /${prefix}")
-            Log.i(TAG, "Маска подсети: ${ipManager.getSubnetMask()}")
-            Log.i(TAG, "Обратная маска подсети (wildcard mask): ${ipManager.getWildcardMask()}")
-            Log.i(TAG, "IP адрес сети: ${ipManager.getNetworkIpAddress()}")
-            Log.i(TAG, "Широковещательный адрес: ${ipManager.getBroadcastIpAddress()}")
-            Log.i(
-                TAG,
-                "Количество доступных адресов в порции хоста: ${ipManager.getCountMaxPossibleHosts()}"
-            )
-            Log.i(TAG, "Количество рабочих адресов для хостов: ${ipManager.getCountUsableHosts()}")
-            Log.i(TAG, "IP адрес первого хоста: ${ipManager.getFirstUsableHost()}")
-            Log.i(TAG, "IP адрес последнего хоста: ${ipManager.getLastUsableHost()}")
+            tvIpAddressValue.text = octets.toString()
+            tvCidrPrefixValue.text = prefix.toString()
+            tvSubnetMaskValue.text = ipManager.getSubnetMask()
+            tvWildcardMaskValue.text = ipManager.getWildcardMask()
+            tvNetworkIpAddressValue.text = ipManager.getNetworkIpAddress()
+            tvBroadcastIpAddressValue.text = ipManager.getBroadcastIpAddress()
+            tvCountPossibleHostsValue.text = ipManager.getCountMaxPossibleHosts().toString()
+            tvCountUsableHostsValue.text = ipManager.getCountUsableHosts().toString()
+            tvFirstHostIpAddressValue.text = ipManager.getFirstUsableHost()
+            tvLastHostIpAddressValue.text = ipManager.getLastUsableHost()
         } catch (e: Exception) {
             Log.e(TAG, "e = ${e.message}")
         }

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="BackgroundDefaultLight">#f6f6f6</color>
+    <color name="BackgroundDefaultLight">#F6F6F6</color>
     <color name="BackgroundSecondaryLight">#FFFFFFFF</color>
-    <color name="TextPrimaryLight">#0e0f15</color>
-    <color name="AccentLight">#0e0f15</color>
-    <color name="AccentSecondaryLight">#00017d</color>
+    <color name="TextPrimaryLight">#0E0F15</color>
+    <color name="AccentLight">#0E0F15</color>
+    <color name="AccentSecondaryLight">#00017D</color>
+    <color name="ButtonBackgroundLight">#3F51B5</color>
+    <color name="ButtonTextLight">#FFFFFFFF</color>
 </resources>

@@ -5,6 +5,9 @@
     <string name="common_slash" translatable="false">/</string>
     <string name="common_dot" translatable="false">.</string>
     <string name="common_not_hosts">В заданной сети нет адресов для рабочих хостов</string>
+    <string name="common_first_octet_hint">192</string>
+    <string name="common_second_octet_hint">168</string>
+    <string name="common_third_and_fourth_octets_hint">0</string>
 
     <string name="main_activity_ip_address">IP адрес:</string>
     <string name="main_activity_cidr_prefix">Префикс маски подсети:</string>
@@ -16,6 +19,7 @@
     <string name="main_activity_usable_hosts">Количество рабочих адресов для хостов:</string>
     <string name="main_activity_first_host">IP адрес первого хоста:</string>
     <string name="main_activity_last_host">IP адрес последнего хоста:</string>
+    <string name="main_activity_calculate_description">Вычислить</string>
 
     <string-array name="subnet_masks">
         <item>/0 (0.0.0.0)</item>
