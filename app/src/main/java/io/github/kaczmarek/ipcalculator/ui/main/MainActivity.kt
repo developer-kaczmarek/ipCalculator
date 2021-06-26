@@ -1,5 +1,6 @@
 package io.github.kaczmarek.ipcalculator.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -12,6 +13,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.*
 import androidx.core.widget.NestedScrollView
 import androidx.core.widget.addTextChangedListener
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.snackbar.Snackbar
@@ -19,7 +21,6 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
 import io.github.kaczmarek.ipcalculator.R
 import io.github.kaczmarek.ipcalculator.utils.manager.IpManager
-import io.github.kaczmarek.ipcalculator.utils.updateStatusBar
 import io.github.kaczmarek.ipcalculator.utils.view.snackbar.TopSnackbar
 import io.github.kaczmarek.ipcalculator.utils.view.spinner.SubnetMasksArrayAdapter
 
@@ -44,11 +45,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnCalculate: MaterialButton
     private lateinit var clSnackbarContainer: CoordinatorLayout
     private var onGlobalLayoutListener: ViewTreeObserver.OnGlobalLayoutListener? = null
+    private var ipManager: IpManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        window.updateStatusBar()
         snrCIDRPrefix = findViewById(R.id.snr_main_mask)
         val adapter = SubnetMasksArrayAdapter(
             this,
@@ -81,21 +82,21 @@ class MainActivity : AppCompatActivity() {
         btnCalculate = findViewById(R.id.btn_main_calculate)
         nsvIpInfoContainer.visibility = View.GONE
         snrCIDRPrefix.setSelection(24) // Установка по умолчанию 24 маски
+        val toolbar = findViewById<MaterialToolbar>(R.id.tb_main)
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         setListenerEditableViews()
 
         ViewCompat.setOnApplyWindowInsetsListener(clContainer) { _, insets ->
-            val sysBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
             if (imeVisible) {
                 val imeHeight = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
                 clContainer.updatePadding(0, 0, 0, imeHeight)
             } else {
                 currentFocus?.clearFocus()
-                clContainer.updatePadding(0, 0, 0, sysBarsInsets.bottom)
             }
-            tvIpAddressTitle.updatePadding(0, sysBarsInsets.top, 0, 0)
-            clSnackbarContainer.updatePadding(0, sysBarsInsets.top, 0, 0)
             insets
         }
 
@@ -118,6 +119,35 @@ class MainActivity : AppCompatActivity() {
             clContainer.viewTreeObserver.removeOnGlobalLayoutListener(it)
         }
         onGlobalLayoutListener = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_share -> {
+                if (isSomeFieldsEmpty()) {
+                    TopSnackbar.make(
+                        clSnackbarContainer,
+                        getString(R.string.main_activity_calculate_not_calculate_data),
+                        Snackbar.LENGTH_LONG
+                    )?.show()
+                } else {
+                    shareCalculateData()
+                }
+            }
+            R.id.action_about_app -> {
+                TopSnackbar.make(
+                    clSnackbarContainer,
+                    "Click About App",
+                    Snackbar.LENGTH_LONG
+                )?.show()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setListenerEditableViews() {
@@ -238,17 +268,20 @@ class MainActivity : AppCompatActivity() {
                 octets.add(it.text.toString().toInt())
             }
             val prefix = snrCIDRPrefix.selectedItemPosition
-            val ipManager = IpManager(octets, prefix)
-            tvIpAddressValue.text = octets.toString()
-            tvCidrPrefixValue.text = prefix.toString()
-            tvSubnetMaskValue.text = ipManager.getSubnetMask()
-            tvWildcardMaskValue.text = ipManager.getWildcardMask()
-            tvNetworkIpAddressValue.text = ipManager.getNetworkIpAddress()
-            tvBroadcastIpAddressValue.text = ipManager.getBroadcastIpAddress()
-            tvCountPossibleHostsValue.text = ipManager.getCountMaxPossibleHosts().toString()
-            tvCountUsableHostsValue.text = ipManager.getCountUsableHosts().toString()
-            tvFirstHostIpAddressValue.text = ipManager.getFirstUsableHost()
-            tvLastHostIpAddressValue.text = ipManager.getLastUsableHost()
+            ipManager = IpManager(octets, prefix)
+            ipManager?.apply {
+                tvIpAddressValue.text = getFormattedCurrentIp()
+                tvCidrPrefixValue.text = prefix.toString()
+                tvSubnetMaskValue.text = getSubnetMask()
+                tvWildcardMaskValue.text = getWildcardMask()
+                tvNetworkIpAddressValue.text = getNetworkIpAddress()
+                tvBroadcastIpAddressValue.text = getBroadcastIpAddress()
+                tvCountPossibleHostsValue.text = getCountMaxPossibleHosts().toString()
+                tvCountUsableHostsValue.text = getCountUsableHosts().toString()
+                tvFirstHostIpAddressValue.text = getFirstUsableHost()
+                tvLastHostIpAddressValue.text = getLastUsableHost()
+            }
+
             nsvIpInfoContainer.visibility = View.VISIBLE
             clEmptyPlaceholder.visibility = View.GONE
         } catch (e: Exception) {
@@ -262,6 +295,36 @@ class MainActivity : AppCompatActivity() {
         val imm = getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         currentFocus?.clearFocus()
+    }
+
+    private fun shareCalculateData() {
+        try {
+            ipManager?.let {
+                val shareValue = getString(
+                    R.string.main_activity_sharing_data,
+                    it.getFormattedCurrentIp(),
+                    snrCIDRPrefix.selectedItemPosition.toString(),
+                    it.getSubnetMask(),
+                    it.getWildcardMask(),
+                    it.getNetworkIpAddress(),
+                    it.getBroadcastIpAddress(),
+                    it.getCountMaxPossibleHosts().toString(),
+                    it.getCountUsableHosts().toString(),
+                    it.getFirstUsableHost(),
+                    it.getLastUsableHost(),
+                )
+
+                val intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, shareValue)
+                    type = "text/plain"
+                }
+
+                startActivity(Intent.createChooser(intent, null))
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "e = ${e.message}")
+        }
     }
 
     companion object {

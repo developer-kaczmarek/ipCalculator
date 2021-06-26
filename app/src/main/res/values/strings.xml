@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">IP Калькулятор</string>
 
+    <string name="menu_share">Поделиться</string>
+    <string name="menu_about_app">О приложении</string>
+
     <string name="common_slash_formatted">/%1$d</string>
     <string name="common_slash" translatable="false">/</string>
     <string name="common_dot" translatable="false">.</string>
@@ -21,6 +24,8 @@
     <string name="main_activity_last_host">IP адрес последнего хоста:</string>
     <string name="main_activity_calculate_description">Вычислить</string>
     <string name="main_activity_calculate_some_fields_empty">Пожалуйста, заполни все октеты</string>
+    <string name="main_activity_calculate_not_calculate_data">Нет данных для передачи</string>
+    <string name="main_activity_sharing_data">IP адрес: %s\nПрефикс маски подсети: %s\nМаска подсети: %s\nОбратная маска подсети (wildcard mask): %s\nIP адрес сети: %s\nШироковещательный адрес: %s\nКоличество доступных адресов в порции хоста: %s\nКоличество рабочих адресов для хостов: %s\nIP адрес первого хоста: %s\nIP адрес последнего хоста: %s</string>
 
     <string name="component_empty_placeholder_description">Пока мы не получили данные, введи IP адрес, маску и тапни \"Вычислить\"</string>
 

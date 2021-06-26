@@ -9,5 +9,4 @@
     <color name="AccentSecondaryLight">#00017D</color>
     <color name="ButtonBackgroundLight">#3F51B5</color>
     <color name="ButtonTextLight">#FFFFFFFF</color>
-    <color name="BackgroundSystemBarsColor">#33000000</color>
 </resources>

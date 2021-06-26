@@ -7,6 +7,11 @@ class IpManager(private val octets: List<Int>, private val cidrPrefix: Int) {
         require(isValidIpAddress()) { "IP address not valid" }
     }
 
+    fun getFormattedCurrentIp(): String {
+        val bintrayIp = convertOctetsToBinaryString(octets)
+        return convertBinaryIpToOctets(bintrayIp.toLong())
+    }
+
     fun getSubnetMask(): String {
         return convertBinaryIpToOctets(toIntMask(cidrPrefix).toLong())
     }

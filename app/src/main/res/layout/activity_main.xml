@@ -10,8 +10,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tb_main" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_main_control_panel"
@@ -167,7 +167,7 @@
         app:layout_constraintBottom_toTopOf="@+id/cv_main_control_panel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/tb_main">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -301,5 +301,15 @@
     </androidx.core.widget.NestedScrollView>
 
     <include layout="@layout/layout_empty_placeholder" />
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tb_main"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/AccentSecondaryLight"
+        app:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
