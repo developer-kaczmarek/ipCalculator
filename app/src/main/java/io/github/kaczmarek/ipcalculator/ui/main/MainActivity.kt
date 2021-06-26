@@ -19,9 +19,9 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
 import io.github.kaczmarek.ipcalculator.R
 import io.github.kaczmarek.ipcalculator.utils.manager.IpManager
+import io.github.kaczmarek.ipcalculator.utils.updateStatusBar
 import io.github.kaczmarek.ipcalculator.utils.view.snackbar.TopSnackbar
 import io.github.kaczmarek.ipcalculator.utils.view.spinner.SubnetMasksArrayAdapter
-
 
 class MainActivity : AppCompatActivity() {
     private lateinit var etArrayIpAddress: Array<TextInputEditText>
@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        window.updateStatusBar()
         snrCIDRPrefix = findViewById(R.id.snr_main_mask)
         val adapter = SubnetMasksArrayAdapter(
             this,
