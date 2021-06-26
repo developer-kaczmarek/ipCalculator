@@ -1,4 +1,4 @@
-package io.github.kaczmarek.ipcalculator
+package io.github.kaczmarek.ipcalculator.utils.manager
 
 import kotlin.math.pow
 

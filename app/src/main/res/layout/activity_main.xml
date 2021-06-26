@@ -5,11 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/cl_main_snackbar_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_main_control_panel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,6 +38,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:descendantFocusability="beforeDescendants"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:fontFamily="@font/noto_bold"
                 android:text="@string/main_activity_ip_address"
                 android:textColor="@color/TextPrimaryLight"
@@ -45,9 +58,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:digits="1234567890."
                     android:gravity="center"
                     android:hint="@string/common_first_octet_hint"
                     android:imeOptions="actionNext"
+                    android:inputType="numberDecimal|textNoSuggestions"
                     android:theme="@style/OctetEditTextTheme" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -63,9 +78,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:digits="1234567890."
                     android:gravity="center"
                     android:hint="@string/common_second_octet_hint"
                     android:imeOptions="actionNext"
+                    android:inputType="numberDecimal|textNoSuggestions"
                     android:theme="@style/OctetEditTextTheme" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -81,9 +98,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:digits="1234567890."
                     android:gravity="center"
                     android:hint="@string/common_third_and_fourth_octets_hint"
                     android:imeOptions="actionNext"
+                    android:inputType="numberDecimal|textNoSuggestions"
                     android:theme="@style/OctetEditTextTheme" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -99,9 +118,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:digits="1234567890."
                     android:gravity="center"
                     android:hint="@string/common_third_and_fourth_octets_hint"
                     android:imeOptions="actionDone"
+                    android:inputType="numberDecimal|textNoSuggestions"
                     android:theme="@style/OctetEditTextTheme" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -279,6 +300,6 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <include layout="@layout/component_empty_placeholder"/>
+    <include layout="@layout/layout_empty_placeholder" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
