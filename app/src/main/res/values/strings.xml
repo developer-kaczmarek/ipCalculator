@@ -20,7 +20,7 @@
     <string name="main_activity_first_host">IP адрес первого хоста:</string>
     <string name="main_activity_last_host">IP адрес последнего хоста:</string>
     <string name="main_activity_calculate_description">Вычислить</string>
-    <string name="main_activity_calculate_some_fields_empty">Заполни все октеты</string>
+    <string name="main_activity_calculate_some_fields_empty">Пожалуйста, заполни все октеты</string>
 
     <string name="component_empty_placeholder_description">Пока мы не получили данные, введи IP адрес, маску и тапни \"Вычислить\"</string>
 
