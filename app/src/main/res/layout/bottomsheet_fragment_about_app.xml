@@ -44,7 +44,7 @@
             android:fontFamily="@font/noto_regular"
             android:gravity="center"
             android:padding="8dp"
-            android:textColor="#A4A4A4"
+            android:textColor="@color/TextAdditionalLight"
             android:textSize="14sp"
             tools:text="Версия 1.1.0 (сборка 156)" />
 
@@ -55,7 +55,7 @@
             android:layout_below="@id/tv_about_app_version"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:background="#A4A4A4" />
+            android:background="@color/DividerBackgroundLight" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_about_app_feedback"

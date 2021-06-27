@@ -2,12 +2,19 @@
 <resources>
     <color name="BackgroundDefaultLight">#F6F6F6</color>
     <color name="BackgroundSecondaryLight">#FFFFFFFF</color>
+
     <color name="TextPrimaryLight">#0E0F15</color>
+    <color name="TextAdditionalLight">#A4A4A4</color>
+
+    <color name="DividerBackgroundLight">#A4A4A4</color>
+
     <color name="SnackbarTextLight">#FFFFFFFF</color>
     <color name="SnackbarBackgroundColorLight">#323232</color>
+
     <color name="AccentLight">#0E0F15</color>
     <color name="AccentSecondaryLight">#00017D</color>
     <color name="AccentThirdLight">#000050</color>
+
     <color name="ButtonBackgroundLight">#3F51B5</color>
     <color name="ButtonTextLight">#FFFFFFFF</color>
 </resources>
