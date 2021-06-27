@@ -32,4 +32,12 @@
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:textColor">@color/TextPrimaryLight</item>
     </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="colorPrimaryDark">@color/AccentSecondaryLight</item>
+    </style>
+
 </resources>

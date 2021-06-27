@@ -20,6 +20,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
 import io.github.kaczmarek.ipcalculator.R
+import io.github.kaczmarek.ipcalculator.ui.aboutapp.AboutAppBottomSheetDialog
 import io.github.kaczmarek.ipcalculator.utils.manager.IpManager
 import io.github.kaczmarek.ipcalculator.utils.view.snackbar.TopSnackbar
 import io.github.kaczmarek.ipcalculator.utils.view.spinner.SubnetMasksArrayAdapter
@@ -140,11 +141,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             R.id.action_about_app -> {
-                TopSnackbar.make(
-                    clSnackbarContainer,
-                    "Click About App",
-                    Snackbar.LENGTH_LONG
-                )?.show()
+                with(supportFragmentManager) {
+                    if (findFragmentByTag(AboutAppBottomSheetDialog.TAG)?.isAdded != true) {
+                        AboutAppBottomSheetDialog().show(this, AboutAppBottomSheetDialog.TAG)
+                    }
+                }
             }
         }
         return super.onOptionsItemSelected(item)
