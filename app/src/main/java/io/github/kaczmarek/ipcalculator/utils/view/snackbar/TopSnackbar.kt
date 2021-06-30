@@ -15,7 +15,6 @@ class TopSnackbar(
     @NonNull parent: ViewGroup,
     @NonNull customView: SnackbarView
 ) : BaseTransientBottomBar<TopSnackbar>(parent, customView, customView) {
-
     init {
         animationMode = ANIMATION_MODE_FADE
         val params = view.layoutParams as CoordinatorLayout.LayoutParams
