@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var cvControlPanel: MaterialCardView
     private lateinit var btnCalculate: MaterialButton
     private lateinit var clSnackbarContainer: CoordinatorLayout
-    private var onGlobalLayoutListener: ViewTreeObserver.OnGlobalLayoutListener? = null
     private var ipManager: IpManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,11 +114,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        ipManager = null
         super.onDestroy()
-        onGlobalLayoutListener?.let {
-            clContainer.viewTreeObserver.removeOnGlobalLayoutListener(it)
-        }
-        onGlobalLayoutListener = null
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -180,7 +176,6 @@ class MainActivity : AppCompatActivity() {
                         EditorInfo.IME_ACTION_NEXT -> moveCursorToNextOctet(index)
                         EditorInfo.IME_ACTION_DONE -> hideKeyboard()
                     }
-
                     false
                 }
                 setOnKeyListener { _, keyCode, _ ->
