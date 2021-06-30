@@ -61,39 +61,27 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_about_app_feedback"
+            style="@style/MenuItemTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/v_about_app_divider"
-            android:background="?attr/selectableItemBackground"
-            android:fontFamily="@font/noto_regular"
-            android:padding="16dp"
-            android:text="@string/fragment_about_app_feedback"
-            android:textColor="@color/TextPrimaryLight"
-            android:textSize="16sp" />
+            android:text="@string/fragment_about_app_feedback" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_about_app_show_code"
+            style="@style/MenuItemTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_about_app_feedback"
-            android:background="?attr/selectableItemBackground"
-            android:fontFamily="@font/noto_regular"
-            android:padding="16dp"
-            android:text="@string/fragment_about_app_github"
-            android:textColor="@color/TextPrimaryLight"
-            android:textSize="16sp" />
+            android:text="@string/fragment_about_app_github" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_about_app_rate"
+            style="@style/MenuItemTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_about_app_show_code"
-            android:background="?attr/selectableItemBackground"
-            android:fontFamily="@font/noto_regular"
-            android:padding="16dp"
-            android:text="@string/fragment_about_app_rate_app"
-            android:textColor="@color/TextPrimaryLight"
-            android:textSize="16sp" />
+            android:text="@string/fragment_about_app_rate_app" />
 
     </RelativeLayout>
 
