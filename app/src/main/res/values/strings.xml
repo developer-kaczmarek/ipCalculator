@@ -1,19 +1,33 @@
 <resources>
-    <string name="app_name">IP Calculator</string>
+    <string name="app_name">IP Калькулятор</string>
 
-    <string name="slash_mask">/%1$d</string>
+    <string name="menu_share">Поделиться</string>
+    <string name="menu_about_app">О приложении</string>
 
-    <string name="dot">.</string>
-    <string name="slash">/</string>
+    <string name="common_slash_formatted">/%1$d</string>
+    <string name="common_slash" translatable="false">/</string>
+    <string name="common_dot" translatable="false">.</string>
+    <string name="common_not_hosts">В заданной сети нет адресов для рабочих хостов</string>
+    <string name="common_first_octet_hint">192</string>
+    <string name="common_second_octet_hint">168</string>
+    <string name="common_third_and_fourth_octets_hint">0</string>
 
-    <string name="label_network">IP адрес сети:</string>
-    <string name="label_subnet_mask">Маска подсети:</string>
-    <string name="label_hosts_range">Hosts Range:</string>
-    <string name="label_ip_first_host">IP адрес первого хоста:</string>
-    <string name="label_ip_last_host">IP адрес последнего хоста:</string>
-    <string name="label_Broadcast">Широковещательный адрес:</string>
-    <string name="label_netSize">Количество рабочих адресов:</string>
-    <string name="label_subnet_wildcard_mask">Обратная маска подсети:</string>
+    <string name="main_activity_ip_address">IP адрес:</string>
+    <string name="main_activity_cidr_prefix">Префикс маски подсети:</string>
+    <string name="main_activity_subnet_mask">Маска подсети:</string>
+    <string name="main_activity_wildcard_mask">Обратная маска подсети (wildcard mask):</string>
+    <string name="main_activity_network_ip_address">IP адрес сети:</string>
+    <string name="main_activity_broadcast_ip_address">Широковещательный адрес:</string>
+    <string name="main_activity_max_possible_hosts">Количество доступных адресов в порции хоста:</string>
+    <string name="main_activity_usable_hosts">Количество рабочих адресов для хостов:</string>
+    <string name="main_activity_first_host">IP адрес первого хоста:</string>
+    <string name="main_activity_last_host">IP адрес последнего хоста:</string>
+    <string name="main_activity_calculate_description">Вычислить</string>
+    <string name="main_activity_calculate_some_fields_empty">Пожалуйста, заполни все октеты</string>
+    <string name="main_activity_calculate_not_calculate_data">Нет данных для передачи</string>
+    <string name="main_activity_sharing_data">IP адрес: %s\nПрефикс маски подсети: %s\nМаска подсети: %s\nОбратная маска подсети (wildcard mask): %s\nIP адрес сети: %s\nШироковещательный адрес: %s\nКоличество доступных адресов в порции хоста: %s\nКоличество рабочих адресов для хостов: %s\nIP адрес первого хоста: %s\nIP адрес последнего хоста: %s</string>
+
+    <string name="component_empty_placeholder_description">Пока мы не получили данные, введи IP адрес, маску и тапни \"Вычислить\"</string>
 
     <string-array name="subnet_masks">
         <item>/0 (0.0.0.0)</item>
@@ -86,4 +100,20 @@
         <item>31</item>
         <item>32</item>
     </string-array>
+
+    <string name="fragment_about_app_feedback">Обратная связь</string>
+    <string name="fragment_about_app_github">Страница на Github</string>
+    <string name="fragment_about_app_version">Версия %s (сборка %s)</string>
+    <string name="fragment_about_app_rate_app">Оценить приложение</string>
+    <string name="fragment_about_app_email_for_feedback">developer.kaczmarek@yandex.ru</string>
+    <string name="fragment_about_app_mail_chooser_title">Выберите приложение для отправки электронного сообщения</string>
+    <string name="fragment_about_app_app_for_intent_not_found">Приложения для обработки действия не найдено</string>
+    <string name="fragment_about_app_app_for_intent_mail_to_not_found">Email для обратной связи скопирован в буфер обмена</string>
+    <string name="fragment_about_app_url_github">https://github.com/developer-kaczmarek/IpCalculator</string>
+    <string name="fragment_about_app_search_in_google_play">market://details?id=%s</string>
+    <string name="fragment_about_app_search_in_browser">https://play.google.com/store/apps/details?id=%s</string>
+
+    <string name="content_description_empty_placeholder">Информация о вычислениях пуста</string>
+    <string name="content_description_icon_app">Логотип приложения</string>
+    <string name="content_description_icon_back">Кнопка назад</string>
 </resources>

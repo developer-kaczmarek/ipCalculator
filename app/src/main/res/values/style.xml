@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <!-- Customize your theme here. -->
-        <item name="colorPrimaryDark">@color/BackgroundDefaultLight</item>
+        <item name="colorPrimaryDark">@color/AccentSecondaryLight</item>
         <item name="colorPrimary">@color/BackgroundDefaultLight</item>
         <item name="colorAccent">@color/AccentLight</item>
         <item name="windowNoTitle">true</item>
@@ -17,6 +17,36 @@
         <item name="android:minWidth">90dp</item>
         <item name="android:textSize">18sp</item>
         <item name="android:maxLength">4</item>
-        <item name="android:inputType">numberDecimal</item>
+        <item name="android:backgroundTint">@color/selector_octet_underline_light</item>
     </style>
+
+    <style name="IpInfoTitleTheme">
+        <item name="android:fontFamily">@font/noto_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/AccentSecondaryLight</item>
+    </style>
+
+    <style name="IpInfoValueTheme">
+        <item name="android:fontFamily">@font/noto_regular</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textColor">@color/TextPrimaryLight</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="colorPrimaryDark">@color/AccentSecondaryLight</item>
+    </style>
+
+    <style name="MenuItemTheme">
+        <item name="android:fontFamily">@font/noto_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:textColor">@color/TextPrimaryLight</item>
+    </style>
+
 </resources>

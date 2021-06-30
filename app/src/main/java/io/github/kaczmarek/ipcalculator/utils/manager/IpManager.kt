@@ -1,10 +1,15 @@
-package io.github.kaczmarek.ipcalculator
+package io.github.kaczmarek.ipcalculator.utils.manager
 
 import kotlin.math.pow
 
 class IpManager(private val octets: List<Int>, private val cidrPrefix: Int) {
     init {
         require(isValidIpAddress()) { "IP address not valid" }
+    }
+
+    fun getFormattedCurrentIp(): String {
+        val bintrayIp = convertOctetsToBinaryString(octets)
+        return convertBinaryIpToOctets(bintrayIp.toLong())
     }
 
     fun getSubnetMask(): String {

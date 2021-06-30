@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_top_snackbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@color/SnackbarBackgroundColorLight">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_top_snackbar_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="@font/noto_regular"
+        android:lineSpacingExtra="4sp"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:textColor="@color/SnackbarTextLight"
+        android:textSize="14sp"
+        tools:text="Упс! Произошла ошибка." />
+
+</RelativeLayout>
