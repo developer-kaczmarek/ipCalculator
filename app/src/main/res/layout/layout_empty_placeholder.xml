@@ -9,12 +9,13 @@
         android:id="@+id/iv_empty_placeholder"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:contentDescription="@string/content_description_empty_placeholder"
         android:src="@drawable/img_empty_placeholder"
         app:layout_constraintBottom_toTopOf="@id/tv_empty_placeholder_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_empty_placeholder_description"
