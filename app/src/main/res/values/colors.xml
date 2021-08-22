@@ -9,7 +9,7 @@
     <color name="DividerBackgroundLight">#A4A4A4</color>
 
     <color name="SnackbarTextLight">#FFFFFFFF</color>
-    <color name="SnackbarBackgroundColorLight">#323232</color>
+    <color name="SnackbarBackgroundLight">#323232</color>
 
     <color name="AccentLight">#0E0F15</color>
     <color name="AccentSecondaryLight">#00017D</color>
@@ -17,4 +17,6 @@
 
     <color name="ButtonBackgroundLight">#3F51B5</color>
     <color name="ButtonTextLight">#FFFFFFFF</color>
+
+    <color name="CardViewBackgroundPrimaryLight">#FFFFFFFF</color>
 </resources>

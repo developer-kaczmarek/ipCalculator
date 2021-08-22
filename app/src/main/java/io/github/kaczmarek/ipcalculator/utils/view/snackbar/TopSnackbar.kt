@@ -22,7 +22,7 @@ class TopSnackbar(
 
         ViewCompat.setElevation(view, context.dpToPx(ELEVATION))
 
-        view.setBackgroundResource( R.drawable.layer_list_snackbar_background)
+        view.setBackgroundResource(R.drawable.layer_list_snackbar_background)
     }
 
     companion object {

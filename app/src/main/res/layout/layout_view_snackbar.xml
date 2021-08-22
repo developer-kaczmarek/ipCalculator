@@ -4,7 +4,7 @@
     android:id="@+id/rl_top_snackbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:background="@color/SnackbarBackgroundColorLight">
+    tools:background="@color/SnackbarBackgroundLight">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_top_snackbar_message"
