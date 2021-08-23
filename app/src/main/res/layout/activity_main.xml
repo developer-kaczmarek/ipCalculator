@@ -145,7 +145,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:minWidth="120dp"
-                    android:spinnerMode="dialog" />
+                    android:spinnerMode="dialog"
+                    android:theme="@style/SubnetMasksSpinnerTheme" />
 
             </LinearLayout>
 

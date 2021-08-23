@@ -21,6 +21,13 @@
         <item name="android:backgroundTint">@color/selector_octet_underline_light</item>
     </style>
 
+    <style name="SubnetMasksSpinnerTheme">
+        <item name="colorControlNormal">@color/AccentLight</item>
+        <item name="colorControlHighlight">@color/BackgroundThirdLight</item>
+        <item name="android:windowBackground">@color/BackgroundSecondaryLight</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
     <style name="IpInfoTitleTheme">
         <item name="android:fontFamily">@font/noto_bold</item>
         <item name="android:textSize">16sp</item>
