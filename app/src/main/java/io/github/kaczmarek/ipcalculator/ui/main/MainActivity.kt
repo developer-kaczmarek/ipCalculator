@@ -245,8 +245,6 @@ class MainActivity : AppCompatActivity() {
                 setSelection(selectionStart, selectionStart)
                 requestFocus()
             }
-        } else {
-            hideKeyboard()
         }
     }
 
