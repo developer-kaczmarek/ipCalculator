@@ -179,7 +179,8 @@ class MainActivity : AppCompatActivity() {
                     false
                 }
                 setOnKeyListener { _, keyCode, _ ->
-                    if (keyCode == KeyEvent.KEYCODE_DEL && editText.text.isNullOrEmpty()) {
+                    val isStartedCursorPosition = editText.selectionStart == 0
+                    if (keyCode == KeyEvent.KEYCODE_DEL && (editText.text.isNullOrEmpty() || isStartedCursorPosition)) {
                         moveCursorToForwardOctet(index)
                     }
                     false
@@ -244,8 +245,6 @@ class MainActivity : AppCompatActivity() {
                 setSelection(selectionStart, selectionStart)
                 requestFocus()
             }
-        } else {
-            hideKeyboard()
         }
     }
 

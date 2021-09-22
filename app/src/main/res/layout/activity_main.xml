@@ -20,6 +20,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="@color/CardViewBackgroundPrimaryLight"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,6 +64,7 @@
                     android:hint="@string/common_first_octet_hint"
                     android:imeOptions="actionNext"
                     android:inputType="numberDecimal|textNoSuggestions"
+                    android:textColor="@color/TextPrimaryLight"
                     android:theme="@style/OctetEditTextTheme" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -83,6 +85,7 @@
                     android:hint="@string/common_second_octet_hint"
                     android:imeOptions="actionNext"
                     android:inputType="numberDecimal|textNoSuggestions"
+                    android:textColor="@color/TextPrimaryLight"
                     android:theme="@style/OctetEditTextTheme" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -103,6 +106,7 @@
                     android:hint="@string/common_third_and_fourth_octets_hint"
                     android:imeOptions="actionNext"
                     android:inputType="numberDecimal|textNoSuggestions"
+                    android:textColor="@color/TextPrimaryLight"
                     android:theme="@style/OctetEditTextTheme" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -123,6 +127,7 @@
                     android:hint="@string/common_third_and_fourth_octets_hint"
                     android:imeOptions="actionDone"
                     android:inputType="numberDecimal|textNoSuggestions"
+                    android:textColor="@color/TextPrimaryLight"
                     android:theme="@style/OctetEditTextTheme" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -140,7 +145,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:minWidth="120dp"
-                    android:spinnerMode="dialog" />
+                    android:spinnerMode="dialog"
+                    android:theme="@style/SubnetMasksSpinnerTheme" />
 
             </LinearLayout>
 
