@@ -55,10 +55,10 @@ class AboutAppBottomSheetDialog : BottomSheetDialogFragment() {
             sendFeedback()
         }
         tvShowCode.setOnClickListener {
-            openGithubRepository()
+            openUrl(getString(R.string.fragment_about_app_url_github))
         }
         tvShowPrivacyPolicy.setOnClickListener {
-            openPrivacyPolicy()
+            openUrl(getString(R.string.fragment_about_app_url_privacy_policy))
         }
         tvRateApp.setOnClickListener {
             searchAppInGooglePlay()
@@ -102,20 +102,6 @@ class AboutAppBottomSheetDialog : BottomSheetDialogFragment() {
         }
     }
 
-    private fun openGithubRepository() {
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(getString(R.string.fragment_about_app_url_github))
-        if (context?.packageManager?.resolveActivity(intent, 0) != null) {
-            startActivity(intent)
-        } else {
-            TopSnackbar.make(
-                clContainer,
-                getString(R.string.fragment_about_app_app_for_intent_not_found),
-                Snackbar.LENGTH_LONG
-            )?.show()
-        }
-    }
-
     private fun sendFeedback() {
         val email = getString(R.string.fragment_about_app_email_for_feedback)
         val emailIntent = Intent(
@@ -144,9 +130,9 @@ class AboutAppBottomSheetDialog : BottomSheetDialogFragment() {
         }
     }
 
-    private fun openPrivacyPolicy() {
+    private fun openUrl(url: String) {
         val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(getString(R.string.fragment_about_app_url_privacy_policy))
+        intent.data = Uri.parse(url)
         if (context?.packageManager?.resolveActivity(intent, 0) != null) {
             startActivity(intent)
         } else {
