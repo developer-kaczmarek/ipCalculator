@@ -76,11 +76,19 @@
             android:text="@string/fragment_about_app_github" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_about_app_rate"
+            android:id="@+id/tv_about_app_show_privacy_policy"
             style="@style/MenuItemTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_about_app_show_code"
+            android:text="@string/fragment_privacy_policy" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_about_app_rate"
+            style="@style/MenuItemTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_about_app_show_privacy_policy"
             android:text="@string/fragment_about_app_rate_app" />
 
     </RelativeLayout>

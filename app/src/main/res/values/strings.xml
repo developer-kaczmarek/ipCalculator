@@ -103,6 +103,7 @@
 
     <string name="fragment_about_app_feedback">Обратная связь</string>
     <string name="fragment_about_app_github">Страница на Github</string>
+    <string name="fragment_privacy_policy">Политика конфиденциальности</string>
     <string name="fragment_about_app_version">Версия %s (сборка %s)</string>
     <string name="fragment_about_app_rate_app">Оценить приложение</string>
     <string name="fragment_about_app_email_for_feedback">developer.kaczmarek@yandex.ru</string>
@@ -110,6 +111,7 @@
     <string name="fragment_about_app_app_for_intent_not_found">Приложения для обработки действия не найдено</string>
     <string name="fragment_about_app_app_for_intent_mail_to_not_found">Email для обратной связи скопирован в буфер обмена</string>
     <string name="fragment_about_app_url_github">https://github.com/developer-kaczmarek/IpCalculator</string>
+    <string name="fragment_about_app_url_privacy_policy">https://github.com/developer-kaczmarek/IpCalculator/blob/main/privacy_policy.pdf</string>
     <string name="fragment_about_app_search_in_google_play">market://details?id=%s</string>
     <string name="fragment_about_app_search_in_browser">https://play.google.com/store/apps/details?id=%s</string>
 
