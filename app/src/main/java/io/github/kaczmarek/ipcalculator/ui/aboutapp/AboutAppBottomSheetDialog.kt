@@ -43,6 +43,8 @@ class AboutAppBottomSheetDialog : BottomSheetDialogFragment() {
         val tvAppVersion = view.findViewById<MaterialTextView>(R.id.tv_about_app_version)
         val tvFeedback = view.findViewById<MaterialTextView>(R.id.tv_about_app_feedback)
         val tvShowCode = view.findViewById<MaterialTextView>(R.id.tv_about_app_show_code)
+        val tvShowPrivacyPolicy =
+            view.findViewById<MaterialTextView>(R.id.tv_about_app_show_privacy_policy)
         val tvRateApp = view.findViewById<MaterialTextView>(R.id.tv_about_app_rate)
 
         tvAppVersion.text = getAppVersion(view.context.packageName)
@@ -53,7 +55,10 @@ class AboutAppBottomSheetDialog : BottomSheetDialogFragment() {
             sendFeedback()
         }
         tvShowCode.setOnClickListener {
-            openGithubRepository()
+            openUrl(getString(R.string.fragment_about_app_url_github))
+        }
+        tvShowPrivacyPolicy.setOnClickListener {
+            openUrl(getString(R.string.fragment_about_app_url_privacy_policy))
         }
         tvRateApp.setOnClickListener {
             searchAppInGooglePlay()
@@ -97,20 +102,6 @@ class AboutAppBottomSheetDialog : BottomSheetDialogFragment() {
         }
     }
 
-    private fun openGithubRepository() {
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(getString(R.string.fragment_about_app_url_github))
-        if (context?.packageManager?.resolveActivity(intent, 0) != null) {
-            startActivity(intent)
-        } else {
-            TopSnackbar.make(
-                clContainer,
-                getString(R.string.fragment_about_app_app_for_intent_not_found),
-                Snackbar.LENGTH_LONG
-            )?.show()
-        }
-    }
-
     private fun sendFeedback() {
         val email = getString(R.string.fragment_about_app_email_for_feedback)
         val emailIntent = Intent(
@@ -134,6 +125,20 @@ class AboutAppBottomSheetDialog : BottomSheetDialogFragment() {
             TopSnackbar.make(
                 clContainer,
                 getString(R.string.fragment_about_app_app_for_intent_mail_to_not_found),
+                Snackbar.LENGTH_LONG
+            )?.show()
+        }
+    }
+
+    private fun openUrl(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        if (context?.packageManager?.resolveActivity(intent, 0) != null) {
+            startActivity(intent)
+        } else {
+            TopSnackbar.make(
+                clContainer,
+                getString(R.string.fragment_about_app_app_for_intent_not_found),
                 Snackbar.LENGTH_LONG
             )?.show()
         }
