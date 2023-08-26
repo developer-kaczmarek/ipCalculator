@@ -4,7 +4,6 @@ import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -12,8 +11,8 @@ import io.github.kaczmarek.ipcalculator.R
 import io.github.kaczmarek.ipcalculator.utils.dpToPx
 
 class TopSnackbar(
-    @NonNull parent: ViewGroup,
-    @NonNull customView: SnackbarView
+    parent: ViewGroup,
+    customView: SnackbarView
 ) : BaseTransientBottomBar<TopSnackbar>(parent, customView, customView) {
     init {
         animationMode = ANIMATION_MODE_FADE
@@ -29,8 +28,8 @@ class TopSnackbar(
         private const val ELEVATION = 6f
 
         fun make(
-            @NonNull view: ViewGroup,
-            @NonNull text: String,
+            view: ViewGroup,
+            text: String,
             @Duration duration: Int
         ): TopSnackbar? {
             return try {

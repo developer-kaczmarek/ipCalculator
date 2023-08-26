@@ -1,2 +1,37 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+enableFeaturePreview('VERSION_CATALOGS')
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    versionCatalogs {
+        libs {
+            version('kotlin', '1.7.0')
+            version('androidGradlePlugin', '7.4.2')
+
+            plugin('android-application', 'com.android.application').versionRef('androidGradlePlugin')
+            plugin('android-library', 'com.android.library').versionRef('androidGradlePlugin')
+            plugin('kotlin-android', 'org.jetbrains.kotlin.android').versionRef('kotlin')
+
+            library('android-core', 'androidx.core', 'core-ktx').version('1.6.0')
+            library('appcompat', 'androidx.appcompat', 'appcompat').version('1.6.1')
+            library('material', 'com.google.android.material', 'material').version('1.5.0')
+            library('constraint-layout', 'androidx.constraintlayout', 'constraintlayout').version('2.0.1')
+
+        }
+    }
+}
+
 rootProject.name = "IP Calculator"
 include ':app'
