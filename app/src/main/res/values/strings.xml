@@ -111,7 +111,7 @@
     <string name="fragment_about_app_app_for_intent_not_found">Приложения для обработки действия не найдено</string>
     <string name="fragment_about_app_app_for_intent_mail_to_not_found">Email для обратной связи скопирован в буфер обмена</string>
     <string name="fragment_about_app_url_github">https://github.com/developer-kaczmarek/IpCalculator</string>
-    <string name="fragment_about_app_url_privacy_policy">https://github.com/developer-kaczmarek/IpCalculator/blob/main/privacy_policy.pdf</string>
+    <string name="fragment_about_app_url_privacy_policy">https://github.com/developer-kaczmarek/IpCalculator/wiki/%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8</string>
     <string name="fragment_about_app_search_in_google_play">market://details?id=%s</string>
     <string name="fragment_about_app_search_in_browser">https://play.google.com/store/apps/details?id=%s</string>
 
