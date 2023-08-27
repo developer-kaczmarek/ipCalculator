@@ -18,7 +18,7 @@ import io.github.kaczmarek.ipcalculator.R
 import io.github.kaczmarek.ipcalculator.utils.view.snackbar.TopSnackbar
 
 class AboutAppBottomSheetDialog : BottomSheetDialogFragment() {
-    lateinit var clContainer: CoordinatorLayout
+    private lateinit var clContainer: CoordinatorLayout
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
@@ -108,14 +108,14 @@ class AboutAppBottomSheetDialog : BottomSheetDialogFragment() {
             Intent.ACTION_SENDTO,
             Uri.fromParts("mailto", email, null)
         )
-        if (context?.packageManager?.resolveActivity(emailIntent, 0) != null) {
+        try {
             startActivity(
                 Intent.createChooser(
                     emailIntent,
                     getString(R.string.fragment_about_app_mail_chooser_title)
                 )
             )
-        } else {
+        } catch (e: ActivityNotFoundException) {
             val clipboard = context?.getSystemService(
                 Context.CLIPBOARD_SERVICE
             ) as? ClipboardManager
@@ -133,9 +133,9 @@ class AboutAppBottomSheetDialog : BottomSheetDialogFragment() {
     private fun openUrl(url: String) {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(url)
-        if (context?.packageManager?.resolveActivity(intent, 0) != null) {
+        try {
             startActivity(intent)
-        } else {
+        } catch (e: ActivityNotFoundException) {
             TopSnackbar.make(
                 clContainer,
                 getString(R.string.fragment_about_app_app_for_intent_not_found),

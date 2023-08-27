@@ -106,7 +106,7 @@
     <string name="fragment_privacy_policy">Политика конфиденциальности</string>
     <string name="fragment_about_app_version">Версия %s (сборка %s)</string>
     <string name="fragment_about_app_rate_app">Оценить приложение</string>
-    <string name="fragment_about_app_email_for_feedback">developer.kaczmarek@yandex.ru</string>
+    <string name="fragment_about_app_email_for_feedback">developer.kaczmarek@gmail.com</string>
     <string name="fragment_about_app_mail_chooser_title">Выберите приложение для отправки электронного сообщения</string>
     <string name="fragment_about_app_app_for_intent_not_found">Приложения для обработки действия не найдено</string>
     <string name="fragment_about_app_app_for_intent_mail_to_not_found">Email для обратной связи скопирован в буфер обмена</string>
