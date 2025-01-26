@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">IP Калькулятор</string>
 
+    <string name="root_nav_calculator">Калькулятор</string>
+    <string name="root_nav_settings">Настройки</string>
+    <string name="root_nav_info">Инфо</string>
+
+    <string name="settings_language">Язык</string>
+    <string name="settings_locale_ru" translatable="false">Русский</string>
+    <string name="settings_locale_kk" translatable="false">Қазақша</string>
+    <string name="settings_locale_en" translatable="false">English</string>
+    <string name="settings_theme">Тема</string>
+    <string name="settings_theme_system">Системная</string>
+    <string name="settings_theme_dark">Тёмная</string>
+    <string name="settings_theme_light">Светлая</string>
+
     <string name="menu_share">Поделиться</string>
     <string name="menu_about_app">О приложении</string>
 

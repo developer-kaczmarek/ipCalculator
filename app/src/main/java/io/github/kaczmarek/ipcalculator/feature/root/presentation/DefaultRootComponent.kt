@@ -1,0 +1,109 @@
+package io.github.kaczmarek.ipcalculator.feature.root.presentation
+
+import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.router.stack.ChildStack
+import com.arkivanov.decompose.router.stack.StackNavigation
+import com.arkivanov.decompose.router.stack.bringToFront
+import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.value.Value
+import com.arkivanov.essenty.lifecycle.doOnStart
+import io.github.kaczmarek.ipcalculator.common.utils.componentCoroutineScope
+import io.github.kaczmarek.ipcalculator.feature.calculator.presentation.DefaultCalculatorComponent
+import io.github.kaczmarek.ipcalculator.feature.info.DefaultInfoComponent
+import io.github.kaczmarek.ipcalculator.feature.settings.domain.repository.SettingsRepository
+import io.github.kaczmarek.ipcalculator.feature.settings.presentation.DefaultSettingsComponent
+import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.ThemeType
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+
+class DefaultRootComponent(
+    componentContext: ComponentContext,
+) : ComponentContext by componentContext, RootComponent, KoinComponent {
+
+    private val navigation = StackNavigation<Config>()
+
+    private val _stack =
+        childStack(
+            source = navigation,
+            initialConfiguration = Config.Calculator,
+            serializer = Config.serializer(),
+            handleBackButton = true,
+            childFactory = ::child,
+        )
+
+    override val stack: Value<ChildStack<*, RootComponent.Child>> = _stack
+
+    override val themeType = MutableStateFlow(ThemeType.System)
+
+    private val settingsRepository: SettingsRepository by inject()
+
+    private val coroutineScope = componentCoroutineScope()
+
+    init {
+        lifecycle.doOnStart {
+            handleThemeUpdating()
+        }
+    }
+
+    override fun onCalculatorTabClick() {
+        navigation.bringToFront(Config.Calculator)
+    }
+
+    override fun onSettingsTabClick() {
+        navigation.bringToFront(Config.Settings)
+    }
+
+    override fun onInfoTabClick() {
+        navigation.bringToFront(Config.Info)
+    }
+
+    private fun handleThemeUpdating() {
+        coroutineScope.launch {
+            settingsRepository.selectedThemeFlow.collectLatest { newType ->
+                themeType.update { newType }
+            }
+        }
+    }
+
+    private fun child(config: Config, componentContext: ComponentContext): RootComponent.Child =
+        when (config) {
+            is Config.Calculator ->
+                RootComponent.Child.CalculatorChild(
+                    DefaultCalculatorComponent(
+                        componentContext = componentContext,
+                    )
+                )
+
+            is Config.Settings ->
+                RootComponent.Child.SettingsChild(
+                    DefaultSettingsComponent(
+                        componentContext = componentContext,
+                    )
+                )
+
+            is Config.Info ->
+                RootComponent.Child.InfoChild(
+                    DefaultInfoComponent(
+                        componentContext = componentContext,
+                    )
+                )
+        }
+
+    @Serializable
+    sealed interface Config {
+
+        @Serializable
+        data object Calculator : Config
+
+        @Serializable
+        data object Settings : Config
+
+        @Serializable
+        data object Info : Config
+    }
+}
