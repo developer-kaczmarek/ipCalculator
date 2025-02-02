@@ -1,0 +1,131 @@
+<resources>
+    <string name="app_name">IP Калькулятор</string>
+
+    <string name="root_nav_calculator">Калькулятор</string>
+    <string name="root_nav_settings">Настройки</string>
+    <string name="root_nav_info">Инфо</string>
+
+    <string name="settings_language">Язык</string>
+    <string name="settings_theme">Тема</string>
+    <string name="settings_theme_system">Системная</string>
+    <string name="settings_theme_dark">Тёмная</string>
+    <string name="settings_theme_light">Светлая</string>
+
+    <string name="menu_share">Поделиться</string>
+    <string name="menu_about_app">О приложении</string>
+
+    <string name="common_slash_formatted">/%1$d</string>
+    <string name="common_slash" translatable="false">/</string>
+    <string name="common_dot" translatable="false">.</string>
+    <string name="common_not_hosts">В заданной сети нет адресов для рабочих хостов</string>
+    <string name="common_first_octet_hint">192</string>
+    <string name="common_second_octet_hint">168</string>
+    <string name="common_third_and_fourth_octets_hint">0</string>
+
+    <string name="main_activity_ip_address">IP адрес:</string>
+    <string name="main_activity_cidr_prefix">Префикс маски подсети:</string>
+    <string name="main_activity_subnet_mask">Маска подсети:</string>
+    <string name="main_activity_wildcard_mask">Обратная маска подсети (wildcard mask):</string>
+    <string name="main_activity_network_ip_address">IP адрес сети:</string>
+    <string name="main_activity_broadcast_ip_address">Широковещательный адрес:</string>
+    <string name="main_activity_max_possible_hosts">Количество доступных адресов в порции хоста:</string>
+    <string name="main_activity_usable_hosts">Количество рабочих адресов для хостов:</string>
+    <string name="main_activity_first_host">IP адрес первого хоста:</string>
+    <string name="main_activity_last_host">IP адрес последнего хоста:</string>
+    <string name="main_activity_calculate_description">Вычислить</string>
+    <string name="main_activity_calculate_some_fields_empty">Пожалуйста, заполни все октеты</string>
+    <string name="main_activity_calculate_not_calculate_data">Нет данных для передачи</string>
+    <string name="main_activity_sharing_data">IP адрес: %s\nПрефикс маски подсети: %s\nМаска подсети: %s\nОбратная маска подсети (wildcard mask): %s\nIP адрес сети: %s\nШироковещательный адрес: %s\nКоличество доступных адресов в порции хоста: %s\nКоличество рабочих адресов для хостов: %s\nIP адрес первого хоста: %s\nIP адрес последнего хоста: %s</string>
+
+    <string name="component_empty_placeholder_description">Пока мы не получили данные, введи IP адрес, маску и тапни \"Вычислить\"</string>
+
+    <string-array name="subnet_masks">
+        <item>/0 (0.0.0.0)</item>
+        <item>/1 (128.0.0.0)</item>
+        <item>/2 (192.0.0.0)</item>
+        <item>/3 (224.0.0.0)</item>
+        <item>/4 (240.0.0.0)</item>
+        <item>/5 (248.0.0.0)</item>
+        <item>/6 (252.0.0.0)</item>
+        <item>/7 (254.0.0.0)</item>
+        <item>/8 (255.0.0.0)</item>
+        <item>/9 (255.128.0.0)</item>
+        <item>/10 (255.192.0.0)</item>
+        <item>/11 (255.224.0.0)</item>
+        <item>/12 (255.240.0.0)</item>
+        <item>/13 (255.248.0.0)</item>
+        <item>/14 (255.252.0.0)</item>
+        <item>/15 (255.254.0.0)</item>
+        <item>/16 (255.255.0.0)</item>
+        <item>/17 (255.255.128.0)</item>
+        <item>/18 (255.255.192.0)</item>
+        <item>/19 (255.255.224.0)</item>
+        <item>/20 (255.255.240.0)</item>
+        <item>/21 (255.255.248.0)</item>
+        <item>/22 (255.255.252.0)</item>
+        <item>/23 (255.255.254.0)</item>
+        <item>/24 (255.255.255.0)</item>
+        <item>/25 (255.255.255.128)</item>
+        <item>/26 (255.255.255.192)</item>
+        <item>/27 (255.255.255.224)</item>
+        <item>/28 (255.255.255.240)</item>
+        <item>/29 (255.255.255.248)</item>
+        <item>/30 (255.255.255.252)</item>
+        <item>/31 (255.255.255.254)</item>
+        <item>/32 (255.255.255.255)</item>
+    </string-array>
+
+    <string-array name="subnet_masks_prefix">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+    </string-array>
+
+    <string name="fragment_about_app_feedback">Обратная связь</string>
+    <string name="fragment_about_app_github">Страница на Github</string>
+    <string name="fragment_privacy_policy">Политика конфиденциальности</string>
+    <string name="fragment_about_app_version">Версия %s (сборка %s)</string>
+    <string name="fragment_about_app_rate_app">Оценить приложение</string>
+    <string name="fragment_about_app_email_for_feedback">developer.kaczmarek@gmail.com</string>
+    <string name="fragment_about_app_mail_chooser_title">Выберите приложение для отправки электронного сообщения</string>
+    <string name="fragment_about_app_app_for_intent_not_found">Приложения для обработки действия не найдено</string>
+    <string name="fragment_about_app_app_for_intent_mail_to_not_found">Email для обратной связи скопирован в буфер обмена</string>
+    <string name="fragment_about_app_url_github">https://github.com/developer-kaczmarek/IpCalculator</string>
+    <string name="fragment_about_app_url_privacy_policy">https://github.com/developer-kaczmarek/IpCalculator/wiki/%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8</string>
+    <string name="fragment_about_app_search_in_google_play">market://details?id=%s</string>
+    <string name="fragment_about_app_search_in_browser">https://play.google.com/store/apps/details?id=%s</string>
+
+    <string name="content_description_empty_placeholder">Информация о вычислениях пуста</string>
+    <string name="content_description_icon_app">Логотип приложения</string>
+    <string name="content_description_icon_back">Кнопка назад</string>
+</resources>

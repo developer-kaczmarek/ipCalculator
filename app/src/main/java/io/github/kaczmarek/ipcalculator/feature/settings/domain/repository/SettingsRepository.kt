@@ -1,16 +1,17 @@
 package io.github.kaczmarek.ipcalculator.feature.settings.domain.repository
 
-import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.ThemeType
 import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.Language
-import kotlinx.coroutines.flow.Flow
+import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.ThemeType
 
 interface SettingsRepository {
 
-    val selectedLanguageFlow: Flow<Language>
+    fun isLanguageSelected(): Boolean
 
-    val selectedThemeFlow: Flow<ThemeType>
+    fun getSelectedLanguage(): Language
 
-    suspend fun setSelectedLanguage(language: Language)
+    fun getSelectedThemeType(): ThemeType
 
-    suspend fun setSelectedTheme(themeType: ThemeType)
+    fun setSelectedLanguage(language: Language)
+
+    fun setSelectedTheme(themeType: ThemeType)
 }
