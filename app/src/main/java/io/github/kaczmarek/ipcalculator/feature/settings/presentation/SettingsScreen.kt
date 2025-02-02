@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -35,23 +37,10 @@ fun SettingsScreen(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier,
+        modifier = modifier
+            .verticalScroll(rememberScrollState()),
     ) {
         val uiState: SettingsUiState by component.uiState.collectAsStateWithLifecycle()
-
-        HeadlineItem(
-            text = stringResource(id = R.string.settings_language),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-                .padding(top = 24.dp, bottom = 8.dp),
-        )
-
-        LocaleRadioGroup(
-            availableLanguages = uiState.availableLanguages,
-            onClick = { component.onLanguageItemClick(it) },
-            modifier = Modifier.fillMaxWidth(),
-        )
 
         HeadlineItem(
             text = stringResource(id = R.string.settings_theme),
@@ -62,14 +51,26 @@ fun SettingsScreen(
         )
 
         ThemeRadioGroup(
-            availableThemes = uiState.availableThemes,
+            selectedThemeType = uiState.selectedThemeType,
             onClick = { component.onThemeItemClick(it) },
+            modifier = Modifier.fillMaxWidth(),
+        )
+
+        HeadlineItem(
+            text = stringResource(id = R.string.settings_language),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+                .padding(top = 24.dp, bottom = 8.dp),
+        )
+
+        LocaleRadioGroup(
+            selectedLanguage = uiState.selectedLanguage,
+            onClick = { component.onLanguageItemClick(it) },
             modifier = Modifier.fillMaxWidth(),
         )
     }
 }
-
-
 
 @Composable
 private fun RadioOption(
@@ -107,7 +108,7 @@ private fun RadioOption(
 
 @Composable
 private fun LocaleRadioGroup(
-    availableLanguages: List<SettingsUiState.LanguageItem>,
+    selectedLanguage: Language,
     onClick: (language: Language) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -123,24 +124,37 @@ private fun LocaleRadioGroup(
                 .fillMaxWidth()
                 .selectableGroup(),
         ) {
-            availableLanguages.forEachIndexed { index, item ->
-                RadioOption(
-                    selected = item.selected,
-                    text = stringResource(id = item.titleRes),
-                    onClick = { onClick(item.language) },
-                    modifier = Modifier.fillMaxWidth(),
-                )
-                if (index != availableLanguages.lastIndex) {
-                    HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
-                }
-            }
+            RadioOption(
+                selected = selectedLanguage == Language.English,
+                text = stringResource(id = R.string.settings_locale_en),
+                onClick = { onClick(Language.English) },
+                modifier = Modifier.fillMaxWidth(),
+            )
+
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
+
+            RadioOption(
+                selected = selectedLanguage == Language.Russian,
+                text = stringResource(id = R.string.settings_locale_ru),
+                onClick = { onClick(Language.Russian) },
+                modifier = Modifier.fillMaxWidth(),
+            )
+
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
+
+            RadioOption(
+                selected = selectedLanguage == Language.Kazakh,
+                text = stringResource(id = R.string.settings_locale_kk),
+                onClick = { onClick(Language.Kazakh) },
+                modifier = Modifier.fillMaxWidth(),
+            )
         }
     }
 }
 
 @Composable
 private fun ThemeRadioGroup(
-    availableThemes: List<SettingsUiState.ThemeItem>,
+    selectedThemeType: ThemeType,
     onClick: (themeType: ThemeType) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -156,17 +170,30 @@ private fun ThemeRadioGroup(
                 .fillMaxWidth()
                 .selectableGroup(),
         ) {
-            availableThemes.forEachIndexed { index, item ->
-                RadioOption(
-                    selected = item.selected,
-                    text = stringResource(id = item.titleRes),
-                    onClick = { onClick(item.themeType) },
-                    modifier = Modifier.fillMaxWidth(),
-                )
-                if (index != availableThemes.lastIndex) {
-                    HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
-                }
-            }
+            RadioOption(
+                selected = selectedThemeType == ThemeType.System,
+                text = stringResource(id = R.string.settings_theme_system),
+                onClick = { onClick(ThemeType.System) },
+                modifier = Modifier.fillMaxWidth(),
+            )
+
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
+
+            RadioOption(
+                selected = selectedThemeType == ThemeType.Dark,
+                text = stringResource(id = R.string.settings_theme_dark),
+                onClick = { onClick(ThemeType.Dark) },
+                modifier = Modifier.fillMaxWidth(),
+            )
+
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
+
+            RadioOption(
+                selected = selectedThemeType == ThemeType.Light,
+                text = stringResource(id = R.string.settings_theme_light),
+                onClick = { onClick(ThemeType.Light) },
+                modifier = Modifier.fillMaxWidth(),
+            )
         }
     }
 }

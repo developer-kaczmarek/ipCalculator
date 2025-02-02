@@ -10,11 +10,12 @@ import com.arkivanov.essenty.lifecycle.doOnStart
 import io.github.kaczmarek.ipcalculator.common.utils.componentCoroutineScope
 import io.github.kaczmarek.ipcalculator.feature.calculator.presentation.DefaultCalculatorComponent
 import io.github.kaczmarek.ipcalculator.feature.info.DefaultInfoComponent
+import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.ThemeType
 import io.github.kaczmarek.ipcalculator.feature.settings.domain.repository.SettingsRepository
 import io.github.kaczmarek.ipcalculator.feature.settings.presentation.DefaultSettingsComponent
-import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.ThemeType
+import io.github.kaczmarek.ipcalculator.feature.settings.presentation.LanguageManager
+import io.github.kaczmarek.ipcalculator.feature.settings.presentation.SettingsComponent
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
@@ -41,12 +42,14 @@ class DefaultRootComponent(
     override val themeType = MutableStateFlow(ThemeType.System)
 
     private val settingsRepository: SettingsRepository by inject()
+    private val languageManager: LanguageManager by inject()
 
     private val coroutineScope = componentCoroutineScope()
 
     init {
         lifecycle.doOnStart {
-            handleThemeUpdating()
+            setLanguagePreferenceIfNeed()
+            getThemeFromPreference()
         }
     }
 
@@ -62,14 +65,6 @@ class DefaultRootComponent(
         navigation.bringToFront(Config.Info)
     }
 
-    private fun handleThemeUpdating() {
-        coroutineScope.launch {
-            settingsRepository.selectedThemeFlow.collectLatest { newType ->
-                themeType.update { newType }
-            }
-        }
-    }
-
     private fun child(config: Config, componentContext: ComponentContext): RootComponent.Child =
         when (config) {
             is Config.Calculator ->
@@ -83,6 +78,7 @@ class DefaultRootComponent(
                 RootComponent.Child.SettingsChild(
                     DefaultSettingsComponent(
                         componentContext = componentContext,
+                        onOutput = ::onSettingsOutput,
                     )
                 )
 
@@ -93,6 +89,29 @@ class DefaultRootComponent(
                     )
                 )
         }
+
+    private fun setLanguagePreferenceIfNeed() {
+        coroutineScope.launch {
+            if (settingsRepository.isLanguageSelected()) return@launch
+
+            settingsRepository.setSelectedLanguage(
+                language = languageManager.getSystemLocaleOrDefault(),
+            )
+        }
+    }
+
+    private fun getThemeFromPreference() {
+        coroutineScope.launch {
+            val newThemeType = settingsRepository.getSelectedThemeType()
+            themeType.update { newThemeType }
+        }
+    }
+
+    private fun onSettingsOutput(output: SettingsComponent.Output) {
+        if (output is SettingsComponent.Output.ThemeChanged) {
+           getThemeFromPreference()
+        }
+    }
 
     @Serializable
     sealed interface Config {

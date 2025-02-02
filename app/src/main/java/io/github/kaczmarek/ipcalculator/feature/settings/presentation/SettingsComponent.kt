@@ -8,6 +8,11 @@ interface SettingsComponent {
 
     val uiState: StateFlow<SettingsUiState>
 
+    sealed interface Output {
+
+        data object ThemeChanged : Output
+    }
+
     fun onLanguageItemClick(newLanguage: Language)
 
     fun onThemeItemClick(newTheme: ThemeType)
