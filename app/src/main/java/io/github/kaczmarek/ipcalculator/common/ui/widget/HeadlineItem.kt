@@ -1,4 +1,4 @@
-package io.github.kaczmarek.ipcalculator.ui.widget
+package io.github.kaczmarek.ipcalculator.common.ui.widget
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -13,7 +13,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
-import io.github.kaczmarek.ipcalculator.ui.theme.AppTheme
+import io.github.kaczmarek.ipcalculator.common.ui.theme.AppTheme
 
 @Composable
 fun HeadlineItem(

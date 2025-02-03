@@ -37,10 +37,10 @@ import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import io.github.kaczmarek.ipcalculator.R
 import io.github.kaczmarek.ipcalculator.feature.calculator.presentation.CalculatorScreen
-import io.github.kaczmarek.ipcalculator.feature.info.InfoScreen
+import io.github.kaczmarek.ipcalculator.feature.info.presentation.InfoScreen
 import io.github.kaczmarek.ipcalculator.feature.settings.presentation.SettingsScreen
-import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.ThemeType
-import io.github.kaczmarek.ipcalculator.ui.theme.AppTheme
+import io.github.kaczmarek.ipcalculator.common.model.theme.ThemeType
+import io.github.kaczmarek.ipcalculator.common.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -62,7 +62,7 @@ fun RootScreen(
                     title = {
                         Text(
                             text = stringResource(
-                                id = when(activeComponent) {
+                                id = when (activeComponent) {
                                     is RootComponent.Child.CalculatorChild -> R.string.root_nav_calculator
                                     is RootComponent.Child.SettingsChild -> R.string.root_nav_settings
                                     is RootComponent.Child.InfoChild -> R.string.root_nav_info

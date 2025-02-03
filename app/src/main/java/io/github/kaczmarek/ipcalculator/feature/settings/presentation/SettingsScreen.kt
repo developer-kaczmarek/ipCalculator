@@ -26,10 +26,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import io.github.kaczmarek.ipcalculator.R
-import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.Language
-import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.ThemeType
-import io.github.kaczmarek.ipcalculator.ui.theme.AppTheme
-import io.github.kaczmarek.ipcalculator.ui.widget.HeadlineItem
+import io.github.kaczmarek.ipcalculator.common.model.language.Language
+import io.github.kaczmarek.ipcalculator.common.model.theme.ThemeType
+import io.github.kaczmarek.ipcalculator.common.ui.theme.AppTheme
+import io.github.kaczmarek.ipcalculator.common.ui.widget.CardWrapper
+import io.github.kaczmarek.ipcalculator.common.ui.widget.HeadlineItem
 
 @Composable
 fun SettingsScreen(
@@ -53,7 +54,9 @@ fun SettingsScreen(
         ThemeRadioGroup(
             selectedThemeType = uiState.selectedThemeType,
             onClick = { component.onThemeItemClick(it) },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth(),
         )
 
         HeadlineItem(
@@ -67,7 +70,9 @@ fun SettingsScreen(
         LocaleRadioGroup(
             selectedLanguage = uiState.selectedLanguage,
             onClick = { component.onLanguageItemClick(it) },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth(),
         )
     }
 }
@@ -112,13 +117,7 @@ private fun LocaleRadioGroup(
     onClick: (language: Language) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Card(
-        modifier = modifier,
-        colors = CardDefaults.cardColors().copy(
-            containerColor = MaterialTheme.colorScheme.surface,
-            contentColor = MaterialTheme.colorScheme.onSurface,
-        )
-    ) {
+    CardWrapper(modifier = modifier) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -158,13 +157,7 @@ private fun ThemeRadioGroup(
     onClick: (themeType: ThemeType) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Card(
-        modifier = modifier,
-        colors = CardDefaults.cardColors().copy(
-            containerColor = MaterialTheme.colorScheme.surface,
-            contentColor = MaterialTheme.colorScheme.onSurface,
-        )
-    ) {
+    CardWrapper(modifier = modifier) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()

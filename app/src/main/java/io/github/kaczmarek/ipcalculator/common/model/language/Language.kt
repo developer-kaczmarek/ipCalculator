@@ -1,4 +1,4 @@
-package io.github.kaczmarek.ipcalculator.feature.settings.domain.model
+package io.github.kaczmarek.ipcalculator.common.model.language
 
 enum class Language(val code: String) {
     English(code = "en"),

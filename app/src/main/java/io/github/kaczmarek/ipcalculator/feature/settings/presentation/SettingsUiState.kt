@@ -1,8 +1,7 @@
 package io.github.kaczmarek.ipcalculator.feature.settings.presentation
 
-import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.Language
-import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.ThemeType
-
+import io.github.kaczmarek.ipcalculator.common.model.language.Language
+import io.github.kaczmarek.ipcalculator.common.model.theme.ThemeType
 
 data class SettingsUiState(
     val selectedLanguage: Language = Language.English,
