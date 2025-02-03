@@ -1,11 +1,10 @@
-package io.github.kaczmarek.ipcalculator.feature.settings.presentation
+package io.github.kaczmarek.ipcalculator.common.manager.locale
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.ConfigurationCompat
 import androidx.core.os.LocaleListCompat
-import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.Language
-
+import io.github.kaczmarek.ipcalculator.common.model.language.Language
 
 class LanguageManager(
     private val context: Context,

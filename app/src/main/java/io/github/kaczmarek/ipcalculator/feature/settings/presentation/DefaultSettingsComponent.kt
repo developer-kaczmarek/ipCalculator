@@ -2,9 +2,10 @@ package io.github.kaczmarek.ipcalculator.feature.settings.presentation
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.essenty.lifecycle.doOnStart
+import io.github.kaczmarek.ipcalculator.common.manager.locale.LanguageManager
 import io.github.kaczmarek.ipcalculator.common.utils.componentCoroutineScope
-import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.Language
-import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.ThemeType
+import io.github.kaczmarek.ipcalculator.common.model.language.Language
+import io.github.kaczmarek.ipcalculator.common.model.theme.ThemeType
 import io.github.kaczmarek.ipcalculator.feature.settings.domain.repository.SettingsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update

@@ -1,4 +1,4 @@
-package io.github.kaczmarek.ipcalculator.utils.manager
+package io.github.kaczmarek.ipcalculator.common.manager.ip
 
 import kotlin.math.pow
 
@@ -54,12 +54,12 @@ class IpManager(private val octets: List<Int>, private val cidrPrefix: Int) {
 
     fun getCountUsableHosts(): Long {
         val count = 2.0.pow((Integer.SIZE - cidrPrefix).toDouble()).toLong() - 2
-        return if(count < 0) 0 else count
+        return if (count < 0) 0 else count
     }
 
     fun getCountMaxPossibleHosts(): Long {
         val count = 2.0.pow((Integer.SIZE - cidrPrefix).toDouble()).toLong()
-        return if(count <= 1) 0 else count
+        return if (count <= 1) 0 else count
     }
 
     private fun getMajorIpAddress(): Int {

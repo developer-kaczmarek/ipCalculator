@@ -6,7 +6,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import io.github.kaczmarek.ipcalculator.ui.theme.AppTheme
+import io.github.kaczmarek.ipcalculator.common.ui.theme.AppTheme
 
 @Composable
 fun CalculatorScreen(

@@ -1,6 +1,5 @@
-package io.github.kaczmarek.ipcalculator.ui.theme
+package io.github.kaczmarek.ipcalculator.common.ui.theme
 
 import androidx.compose.material3.Typography
-
 
 val Typography = Typography()

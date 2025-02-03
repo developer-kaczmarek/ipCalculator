@@ -7,13 +7,15 @@ import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.lifecycle.doOnStart
+import io.github.kaczmarek.ipcalculator.common.manager.locale.LanguageManager
+import io.github.kaczmarek.ipcalculator.common.model.link.AppLinkType
+import io.github.kaczmarek.ipcalculator.common.model.theme.ThemeType
 import io.github.kaczmarek.ipcalculator.common.utils.componentCoroutineScope
 import io.github.kaczmarek.ipcalculator.feature.calculator.presentation.DefaultCalculatorComponent
-import io.github.kaczmarek.ipcalculator.feature.info.DefaultInfoComponent
-import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.ThemeType
+import io.github.kaczmarek.ipcalculator.feature.info.presentation.DefaultInfoComponent
+import io.github.kaczmarek.ipcalculator.feature.info.presentation.InfoComponent
 import io.github.kaczmarek.ipcalculator.feature.settings.domain.repository.SettingsRepository
 import io.github.kaczmarek.ipcalculator.feature.settings.presentation.DefaultSettingsComponent
-import io.github.kaczmarek.ipcalculator.feature.settings.presentation.LanguageManager
 import io.github.kaczmarek.ipcalculator.feature.settings.presentation.SettingsComponent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
@@ -24,6 +26,9 @@ import org.koin.core.component.inject
 
 class DefaultRootComponent(
     componentContext: ComponentContext,
+    private val onOpenLink: (AppLinkType) -> Unit,
+    private val onShareText: (String) -> Unit,
+    private val onRateApp: () -> Unit,
 ) : ComponentContext by componentContext, RootComponent, KoinComponent {
 
     private val navigation = StackNavigation<Config>()
@@ -86,6 +91,7 @@ class DefaultRootComponent(
                 RootComponent.Child.InfoChild(
                     DefaultInfoComponent(
                         componentContext = componentContext,
+                        onOutput = ::onInfoOutput,
                     )
                 )
         }
@@ -109,7 +115,15 @@ class DefaultRootComponent(
 
     private fun onSettingsOutput(output: SettingsComponent.Output) {
         if (output is SettingsComponent.Output.ThemeChanged) {
-           getThemeFromPreference()
+            getThemeFromPreference()
+        }
+    }
+
+    private fun onInfoOutput(output: InfoComponent.Output) {
+        when (output) {
+            is InfoComponent.Output.OpenLink -> onOpenLink(output.linkType)
+            is InfoComponent.Output.ShareText -> onShareText(output.text)
+            is InfoComponent.Output.RateApp -> onRateApp()
         }
     }
 

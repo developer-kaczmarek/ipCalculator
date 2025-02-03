@@ -1,4 +1,4 @@
-package io.github.kaczmarek.ipcalculator.ui.theme
+package io.github.kaczmarek.ipcalculator.common.ui.theme
 
 import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -10,8 +10,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import io.github.kaczmarek.ipcalculator.feature.settings.domain.model.ThemeType
-
+import io.github.kaczmarek.ipcalculator.common.model.theme.ThemeType
 
 private val DarkColorScheme = darkColorScheme(
     primary = PrimaryColor,
