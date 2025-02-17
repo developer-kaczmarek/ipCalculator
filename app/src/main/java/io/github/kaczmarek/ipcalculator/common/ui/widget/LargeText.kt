@@ -23,7 +23,7 @@ fun LargeText(
         modifier = modifier.padding(16.dp),
         text = text,
         color = MaterialTheme.colorScheme.onSurface,
-        style = MaterialTheme.typography.bodyLarge.merge(),
+        style = MaterialTheme.typography.bodyLarge,
     )
 }
 

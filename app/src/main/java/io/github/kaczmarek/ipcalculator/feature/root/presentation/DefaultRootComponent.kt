@@ -17,6 +17,7 @@ import io.github.kaczmarek.ipcalculator.feature.info.presentation.InfoComponent
 import io.github.kaczmarek.ipcalculator.feature.settings.domain.repository.SettingsRepository
 import io.github.kaczmarek.ipcalculator.feature.settings.presentation.DefaultSettingsComponent
 import io.github.kaczmarek.ipcalculator.feature.settings.presentation.SettingsComponent
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -48,8 +49,11 @@ class DefaultRootComponent(
 
     private val settingsRepository: SettingsRepository by inject()
     private val languageManager: LanguageManager by inject()
+    private val exceptionHandler = CoroutineExceptionHandler { _, _ ->
+        // TODO: show snackbar
+    }
 
-    private val coroutineScope = componentCoroutineScope()
+    private val coroutineScope = componentCoroutineScope(exceptionHandler)
 
     init {
         lifecycle.doOnStart {

@@ -9,8 +9,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
@@ -92,15 +90,16 @@ private fun RadioOption(
                 role = Role.RadioButton,
             )
             .padding(all = 16.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1.0f),
             text = text,
-            style = MaterialTheme.typography.bodyLarge.merge(),
+            style = MaterialTheme.typography.bodyLarge,
         )
+
         RadioButton(
             colors = RadioButtonDefaults.colors().copy(
                 selectedColor = MaterialTheme.colorScheme.secondary,
