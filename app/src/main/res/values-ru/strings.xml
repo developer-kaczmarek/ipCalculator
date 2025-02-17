@@ -5,6 +5,9 @@
     <string name="root_nav_settings">Настройки</string>
     <string name="root_nav_info">Инфо</string>
 
+    <string name="calculator_calculate_text">Вычислить</string>
+    <string name="calculator_share_text">Поделиться</string>
+
     <string name="settings_language">Язык</string>
     <string name="settings_theme">Тема</string>
     <string name="settings_theme_system">Системная</string>

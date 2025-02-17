@@ -6,12 +6,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -36,11 +39,11 @@ import com.arkivanov.decompose.extensions.compose.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import io.github.kaczmarek.ipcalculator.R
+import io.github.kaczmarek.ipcalculator.common.model.theme.ThemeType
+import io.github.kaczmarek.ipcalculator.common.ui.theme.AppTheme
 import io.github.kaczmarek.ipcalculator.feature.calculator.presentation.CalculatorScreen
 import io.github.kaczmarek.ipcalculator.feature.info.presentation.InfoScreen
 import io.github.kaczmarek.ipcalculator.feature.settings.presentation.SettingsScreen
-import io.github.kaczmarek.ipcalculator.common.model.theme.ThemeType
-import io.github.kaczmarek.ipcalculator.common.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -86,6 +89,8 @@ fun RootScreen(
                 component = component,
                 modifier = Modifier
                     .padding(innerPadding)
+                    .consumeWindowInsets(innerPadding)
+                    .imePadding()
                     .fillMaxSize(),
             )
         }
@@ -134,7 +139,7 @@ private fun BottomBar(
                 selected = activeComponent is RootComponent.Child.CalculatorChild,
                 onClick = component::onCalculatorTabClick,
                 labelRes = R.string.root_nav_calculator,
-                icon = Icons.Default.Info,
+                icon = Icons.AutoMirrored.Filled.List,
             )
 
             NavigationItem(
@@ -170,7 +175,13 @@ fun RowScope.NavigationItem(
     NavigationBarItem(
         selected = selected,
         onClick = onClick,
-        label = { Text(stringResource(labelRes), maxLines = 1, overflow = TextOverflow.Ellipsis) },
+        label = {
+            Text(
+                text = stringResource(labelRes),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        },
         icon = { Icon(imageVector = icon, contentDescription = null) },
     )
 }
